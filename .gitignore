@@ -86,3 +86,11 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+filmweb
+filmweb-api-master
+.idea
+.idea/filmweb-api.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/workspace.xml
