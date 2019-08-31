@@ -90,3 +90,4 @@ typings/
 filmweb/
 filmweb-api-master/
 .idea/*
+/node_modules/
