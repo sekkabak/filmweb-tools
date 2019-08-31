@@ -87,7 +87,6 @@ typings/
 # DynamoDB Local files
 .dynamodb/
 
+.idea/
 filmweb/
 filmweb-api-master/
-.idea/*
-/node_modules/
