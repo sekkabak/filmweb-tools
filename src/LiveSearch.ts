@@ -1,21 +1,55 @@
-import axios, {AxiosResponse} from "axios";
-import ResponseLiveSearch from "./models/ResponseLiveSearch";
+import axios from "axios";
+import {LiveSearchResponseModel} from "./models/LiveSearchModel";
+import {LiveSearchData} from "./interfaces/LiveSearch";
 
+// @TODO: standaryzacja errorów dla api filmwebu
 export default class LiveSearch {
     static URL = 'http://www.filmweb.pl/search/live?q=';
-    static IMAGE_URL = 'https://1.fwcdn.pl/po';
 
-    public static async search(query: string, callback: Function) {
-        const request: AxiosResponse = await axios.get(LiveSearch.URL + query);
-        let data: ResponseLiveSearch[] = request.data.split('\\a').map((record: String) => {
-            const data: any[] = record.split('\\c');
-            data[1] = parseInt(data[1]);
-            data[2] = LiveSearch.IMAGE_URL + data[2];
-            data[6] = parseInt(data[6]);
-            data[7] = data[7].split(', ');
-            return new ResponseLiveSearch(...data);
+    /**
+     * Zwraca tablice elementów z wyszukiwarki filmwebu o podanej frazie
+     * @param query
+     */
+    public static search(query: string): Promise<LiveSearchData[]> {
+        return new Promise<LiveSearchData[]>((resolve, reject) => {
+            axios.get(LiveSearch.URL + query).then(result => {
+                try {
+                    resolve(result.data.split('\\a').map((record: string) => {
+                        const data: any[] = record.split('\\c');
+                        data[1] = parseInt(data[1]);
+                        data[6] = parseInt(data[6]);
+                        return new LiveSearchResponseModel(...data).getData();
+                    }));
+                } catch (err) {
+                    reject(new Error(err))
+                }
+            }).catch(err => {
+                throw err;
+            });
         });
-        callback(data);
+    }
+
+    /**
+     * Zwraca pierwszy element z wyszukiwarki filmwebu o podanej frazie
+     * @param query
+     */
+    public static searchFirst(query: string): Promise<LiveSearchData> {
+        return new Promise<LiveSearchData>((resolve, reject) => {
+            axios.get(LiveSearch.URL + query).then(result => {
+                try {
+                    resolve(result.data.split('\\a').slice(0, 1).map((record: string) => {
+                        const data: any[] = record.split('\\c');
+                        data[1] = parseInt(data[1]);
+                        data[6] = parseInt(data[6]);
+                        return new LiveSearchResponseModel(...data).getData();
+                    })[0]);
+                } catch (err) {
+                    reject(new Error(err))
+                }
+            }).catch(err => {
+                throw err;
+            });
+        });
     }
 }
 
