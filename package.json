@@ -4,8 +4,8 @@
   "license": "MIT",
   "author": "Cezary Bąk",
   "description": "Biblioteka umożliwiająca korzystanie z api filmwebu",
-  "main": "dist/bundle.js",
-  "types": "dist/types/index.d.ts",
+  "main": "lib/Filmweb.js",
+  "types": "lib/Filmweb.d.ts",
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
