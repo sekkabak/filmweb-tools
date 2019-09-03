@@ -10,8 +10,7 @@ import Film from "../models/Film";
 // });
 
 test('getFilmShortData', done => {
-    const fw = new Filmweb();
-    fw.getFilmShortData('Obcy').then((data: LiveSearchData) => {
+    Filmweb.getFilmShortData('Obcy').then((data: LiveSearchData) => {
         expect(data).toEqual({
             id: 980,
             type: "f",
@@ -37,8 +36,7 @@ test('getFilmShortData', done => {
 });
 
 test('getFilmInfoFull', done => {
-    const fw = new Filmweb();
-    fw.getFilmData(1048).then((result: Film) => {
+    Filmweb.getFilmData(1048).then((result: Film) => {
         expect(result).toEqual({
             id: 1048,
             title: "Skazani na Shawshank",

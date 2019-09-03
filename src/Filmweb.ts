@@ -8,6 +8,9 @@ import LiveSearch from "./LiveSearch";
 import Film from "./models/Film";
 
 export default class Filmweb {
+
+    public static getImageServers = (index: number = 0) => Config.IMAGE_SERVER(index);
+
     // // @TODO: ogarnąć typ genres
     // static get genres(): string[] {
     //     return genres;
@@ -25,7 +28,7 @@ export default class Filmweb {
     }
 
     // @TODO: standaryzacja errorów dla api filmwebu
-    public getFilmData(filmId: number): Promise<Film> {
+    public static getFilmData(filmId: number): Promise<Film> {
         return new Promise((resolve, reject) => {
             axios.get(
                 Config.API_SERVER +
@@ -60,6 +63,6 @@ export default class Filmweb {
         });
     }
 
-    public getFilmShortData = (query: string): Promise<LiveSearchData> => LiveSearch.searchFirst(query);
-    public getLiveSearchData = (query: string): Promise<LiveSearchData[]> => LiveSearch.search(query);
+    public static getFilmShortData = (query: string): Promise<LiveSearchData> => LiveSearch.searchFirst(query);
+    public static getLiveSearchData = (query: string): Promise<LiveSearchData[]> => LiveSearch.search(query);
 }

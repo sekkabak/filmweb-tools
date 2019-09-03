@@ -14,7 +14,7 @@ export default class Config {
     static get IMAGE_SERVERS(): string[] {
         return this._IMAGE_SERVERS;
     }
-    static IMAGE_SERVER(index: number = 0): string {
+    public static IMAGE_SERVER(index: number = 0): string {
         index = index % Config.IMAGE_SERVERS.length;
         return this._IMAGE_SERVERS[index];
     }
