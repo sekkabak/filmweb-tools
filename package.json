@@ -1,11 +1,18 @@
 {
   "name": "filmweb-tools",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "license": "MIT",
-  "author": "Cezary Bąk",
+  "author": "Cezary Bąk <sekkabak@gmail.com>",
   "description": "Biblioteka umożliwiająca korzystanie z api filmwebu",
   "main": "lib/Filmweb.js",
   "types": "lib/Filmweb.d.ts",
+  "keywords": [
+    "Filmweb"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sekkabak/filmweb-tools.git"
+  },
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
