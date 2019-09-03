@@ -1,6 +1,6 @@
 import MD5 from 'crypto-js/md5';
 import axios from "axios";
-import genres from './static/genres.json';
+// import genres from './static/genres.json';
 
 import Config from "./Config";
 import {LiveSearchData} from "./interfaces/LiveSearch";
@@ -8,12 +8,12 @@ import LiveSearch from "./LiveSearch";
 import Film from "./models/Film";
 
 export default class Filmweb {
-    // @TODO: ogarnąć typ genres
-    static get genres(): string[] {
-        return genres;
-    }
-
-    public static getGenre = (id: number): string => genres[id];
+    // // @TODO: ogarnąć typ genres
+    // static get genres(): string[] {
+    //     return genres;
+    // }
+    //
+    // public static getGenre = (id: number): string => genres[id];
 
     private static prepareQuery(method: string): string {
         const signature = Config.APP_VERSION + "," + MD5(method + "\\n" + Config.APPID + Config.APP_KEY);

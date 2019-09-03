@@ -12,7 +12,7 @@ export default class LiveSearch {
      */
     public static search(query: string): Promise<LiveSearchData[]> {
         return new Promise<LiveSearchData[]>((resolve, reject) => {
-            axios.get(LiveSearch.URL + query).then(result => {
+            axios.get(LiveSearch.URL + encodeURI(query)).then(result => {
                 try {
                     resolve(result.data.split('\\a').map((record: string) => {
                         const data: any[] = record.split('\\c');
@@ -35,7 +35,7 @@ export default class LiveSearch {
      */
     public static searchFirst(query: string): Promise<LiveSearchData> {
         return new Promise<LiveSearchData>((resolve, reject) => {
-            axios.get(LiveSearch.URL + query).then(result => {
+            axios.get(LiveSearch.URL + encodeURI(query)).then(result => {
                 try {
                     resolve(result.data.split('\\a').slice(0, 1).map((record: string) => {
                         const data: any[] = record.split('\\c');
@@ -47,6 +47,7 @@ export default class LiveSearch {
                     reject(new Error(err))
                 }
             }).catch(err => {
+                console.log(query);
                 throw err;
             });
         });
