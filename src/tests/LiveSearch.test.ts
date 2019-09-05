@@ -139,3 +139,45 @@ test('.itemPreview(547035)', done => {
         done();
     })
 });
+
+test('.itemPreviewByQuery(Skazani na Shawshank)', done => {
+    LiveSearch.itemPreviewByQuery("Skazani na Shawshank").then(data => {
+        expect(data).toEqual({
+            "id": 1048,
+            "polishTitle": "Skazani na Shawshank",
+            "title": "The Shawshank Redemption",
+            "url": "https://www.filmweb.pl/film/Skazani%20na%20Shawshank-1994-1048",
+            "year": 1994,
+            "type": "f",
+            "trailer": "/video/Zwiastun/nr+1-12692",
+            "poster": "/10/48/1048/6925401.6.jpg",
+            "images": [
+                "/10/48/1048/6925401.0.jpg",
+                "/10/48/1048/6925401.1.jpg",
+                "/10/48/1048/6925401.2.jpg",
+                "/10/48/1048/6925401.3.jpg",
+                "/10/48/1048/6925401.4.jpg",
+                "/10/48/1048/6925401.5.jpg",
+                "/10/48/1048/6925401.6.jpg"
+            ],
+            "duration": 142,
+            "rate": 8.781305313110352,
+            "rateCount": 859129,
+            "description": "Adaptacja opowiadania Stephena Kinga. Niesłusznie skazany na dożywocie bankier, stara się przetrwać w brutalnym, więziennym świecie.",
+            "genres": [
+                6
+            ],
+            "countries": [
+                53
+            ],
+            "directors": [
+                "Frank Darabont"
+            ],
+            "cast": [
+                "Tim Robbins",
+                "Morgan Freeman"
+            ]
+        } as LivePreviewData);
+        done();
+    })
+});

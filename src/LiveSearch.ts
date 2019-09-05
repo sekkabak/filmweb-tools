@@ -1,5 +1,5 @@
 import axios from "axios";
-import {LiveSearchData} from "./interfaces/LiveData";
+import {LivePreviewData, LiveSearchData} from "./interfaces/LiveData";
 import Helper from "./Helper";
 
 // @TODO: standaryzacja errorów dla api filmwebu
@@ -26,13 +26,25 @@ export default class LiveSearch {
     }
 
     public static itemPreview(id: number) {
-        return new Promise(resolve => {
+        return new Promise<LivePreviewData>(resolve => {
             axios.get(LiveSearch.PREVIEW_URL + id).then(content => {
                 resolve(Helper.mapLiveItemPreview(content.data))
             }).catch(err => {
                 throw err;
             })
         })
+    }
+
+    public static itemPreviewByQuery(query: string) {
+        return new Promise<LivePreviewData>(resolve => {
+            LiveSearch.search(query).then(result => {
+                axios.get(LiveSearch.PREVIEW_URL + result[0].id).then(content => {
+                    resolve(Helper.mapLiveItemPreview(content.data))
+                }).catch(err => {
+                    throw err;
+                })
+            });
+        });
     }
 
     /**

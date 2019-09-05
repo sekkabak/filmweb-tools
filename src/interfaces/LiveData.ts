@@ -16,6 +16,7 @@ export interface LivePreviewData {
     title: string;
     type: ItemType;
     year: number;
+    url: string;
     images: string[];
     trailer: string;
     poster: string;
