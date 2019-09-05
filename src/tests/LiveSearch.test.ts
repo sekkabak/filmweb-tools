@@ -1,38 +1,73 @@
 import LiveSearch from "../LiveSearch";
-import {LiveSearchData} from "../interfaces/LiveSearch";
+import {LivePreviewData, LiveSearchData} from "../interfaces/LiveData";
 
 test('LiveSearch.search(Obcy)', done => {
-    LiveSearch.search('Obcy').then((data: LiveSearchData[]) => {
+    LiveSearch.search('Obcy').then(data => {
         expect(data[0]).toEqual({
-            id: 980,
-            type: "f",
-            images: [
-                "/09/80/980/7518072.1.jpg",
-                "/09/80/980/7518072.2.jpg",
-                "/09/80/980/7518072.3.jpg",
-                "/09/80/980/7518072.4.jpg",
-                "/09/80/980/7518072.5.jpg",
-                "/09/80/980/7518072.6.jpg"
-            ],
-            link: "https://www.filmweb.pl/film/Obcy%20-%208.%20pasa%C5%BCer%20%22Nostromo%22-1979-980",
-            stars: [
+            "type": "f",
+            "id": 980,
+            "poster": "/09/80/980/7518072.6.jpg",
+            "polishTitle": "Alien",
+            "title": "Obcy - 8. pasażer \"Nostromo\"",
+            "year": 1979,
+            "stars": [
                 "Sigourney Weaver",
                 "Tom Skerritt"
-            ],
-            title: "Alien",
-            title2: "Obcy - 8. pasażer \"Nostromo\"",
-            year: 1979,
-        });
+            ]
+        } as LiveSearchData);
         done();
     });
 });
 
 test('LiveSearch.search(The Shawshank Redemption)', done => {
-    LiveSearch.search('The Shawshank Redemption').then((data: LiveSearchData[]) => {
+    LiveSearch.search('The Shawshank Redemption').then(data => {
         expect(data[0]).toEqual({
-            id: 1048,
-            type: "f",
-            images: [
+            "type": "f",
+            "id": 1048,
+            "poster": "/10/48/1048/6925401.6.jpg",
+            "polishTitle": "Skazani na Shawshank",
+            "title": "The Shawshank Redemption",
+            "year": 1994,
+            "stars": [
+                "Tim Robbins",
+                "Morgan Freeman"
+            ]
+        } as LiveSearchData);
+        done();
+    });
+});
+
+test('LiveSearch.searchFirst(The Shawshank Redemption)', done => {
+    LiveSearch.searchFirst('The Shawshank Redemption').then(data => {
+        expect(data).toEqual({
+            "type": "f",
+            "id": 1048,
+            "poster": "/10/48/1048/6925401.6.jpg",
+            "polishTitle": "Skazani na Shawshank",
+            "title": "The Shawshank Redemption",
+            "year": 1994,
+            "stars": [
+                "Tim Robbins",
+                "Morgan Freeman"
+            ]
+        } as LiveSearchData);
+        done();
+    });
+});
+
+test('.itemPreview(1048)', done => {
+    LiveSearch.itemPreview(1048).then(data => {
+        expect(data).toEqual({
+            "id": 1048,
+            "polishTitle": "Skazani na Shawshank",
+            "title": "The Shawshank Redemption",
+            "url": "https://www.filmweb.pl/film/Skazani%20na%20Shawshank-1994-1048",
+            "year": 1994,
+            "type": "f",
+            "trailer": "/video/Zwiastun/nr+1-12692",
+            "poster": "/10/48/1048/6925401.6.jpg",
+            "images": [
+                "/10/48/1048/6925401.0.jpg",
                 "/10/48/1048/6925401.1.jpg",
                 "/10/48/1048/6925401.2.jpg",
                 "/10/48/1048/6925401.3.jpg",
@@ -40,15 +75,67 @@ test('LiveSearch.search(The Shawshank Redemption)', done => {
                 "/10/48/1048/6925401.5.jpg",
                 "/10/48/1048/6925401.6.jpg"
             ],
-            link: "https://www.filmweb.pl/film/The%20Shawshank%20Redemption-1994-1048",
-            stars: [
+            "duration": 142,
+            "rate": 8.781305313110352,
+            "rateCount": 859129,
+            "description": "Adaptacja opowiadania Stephena Kinga. Niesłusznie skazany na dożywocie bankier, stara się przetrwać w brutalnym, więziennym świecie.",
+            "genres": [
+                6
+            ],
+            "countries": [
+                53
+            ],
+            "directors": [
+                "Frank Darabont"
+            ],
+            "cast": [
                 "Tim Robbins",
                 "Morgan Freeman"
-            ],
-            title: "Skazani na Shawshank",
-            title2: "The Shawshank Redemption",
-            year: 1994
-        });
+            ]
+        } as LivePreviewData);
         done();
-    });
+    })
+});
+
+test('.itemPreview(547035)', done => {
+    LiveSearch.itemPreview(547035).then(data => {
+        expect(data).toEqual({
+            "id": 547035,
+            "polishTitle": "The Walking Dead",
+            "title": "The Walking Dead",
+            "url": "https://www.filmweb.pl/serial/The%20Walking%20Dead-2010-547035",
+            "year": 2010,
+            "type": "s",
+            "trailer": "/video/Zwiastun/nr+2+sezon+10-50736",
+            "poster": "/70/35/547035/7856859.6.jpg",
+            "images": [
+                "/70/35/547035/7856859.0.jpg",
+                "/70/35/547035/7856859.1.jpg",
+                "/70/35/547035/7856859.2.jpg",
+                "/70/35/547035/7856859.3.jpg",
+                "/70/35/547035/7856859.4.jpg",
+                "/70/35/547035/7856859.5.jpg",
+                "/70/35/547035/7856859.6.jpg"
+            ],
+            "duration": 45,
+            "rate": 7.8563232421875,
+            "rateCount": 152871,
+            "description": "Świat opanowały zombie. Grupka ocalałych szuka bezpiecznego schronienia. ",
+            "genres": [
+                6,
+                12
+            ],
+            "countries": [
+                53
+            ],
+            "directors": [
+                "Frank Darabont"
+            ],
+            "cast": [
+                "Andrew Lincoln",
+                "Norman Reedus"
+            ]
+        } as LivePreviewData);
+        done();
+    })
 });

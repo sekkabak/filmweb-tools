@@ -1,6 +1,5 @@
 import Helper from "../Helper";
 
-// @TODO: zmiana nazwy
 export default class Film {
     id: number;
     title: string;
@@ -52,6 +51,7 @@ export default class Film {
         ] = args;
 
         this.images = Helper.getAllPosters(this._posterLink);
-        this.link = Helper.generateLink(this.title2, this.year, this.id);
+        this.link = "";
+        // this.link = Helper.generateFilmwebUrl(this.title2, this.year, this.id);
     }
 }
