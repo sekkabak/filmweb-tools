@@ -58,7 +58,7 @@ test('getFilmInfoFull', done => {
             "releaseWorldDate": "1994-09-10",
             "releasePolandData": "1995-04-16",
             "production": [
-                "USA"
+                53
             ],
             "plot": "Adaptacja opowiadania Stephena Kinga. Niesłusznie skazany na dożywocie bankier, stara się przetrwać w brutalnym, więziennym świecie."
         } as Film);

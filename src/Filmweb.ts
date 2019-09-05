@@ -82,7 +82,9 @@ export default class Filmweb {
                     trailerVideoLink: json[12][1] == undefined ? "" : json[12][1],
                     releaseWorldDate: json[13],
                     releasePolandData: json[14],
-                    production: json[18].split(','),
+                    production: json[18].split(',').map((item: string)=>{
+                        return Filmweb.getCountryId(item);
+                    }),
                     plot: json[19]
                 } as Film);
             });

@@ -40,7 +40,7 @@ export interface Item {
     polishTitle: string;
     poster: string;
     images: string[];
-    production: string[];
+    production: number[];
     rate: number;
     title: string;
     type: ItemType;
