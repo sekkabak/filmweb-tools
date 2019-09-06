@@ -1,14 +1,16 @@
 import MD5 from 'crypto-js/md5';
 import axios from "axios";
+
 import genres from './static/genres.json';
 import countries from './static/countries.json';
+import tvshowGenres from './static/tvshowgenres.json';
 
 import Config from "./Config";
-import {LiveSearchData} from "./interfaces/LiveData";
 import LiveSearch from "./LiveSearch";
 import Film from "./interfaces/Film";
 import Helper from "./Helper";
 import {ItemType} from "./interfaces/Item";
+import {LivePreviewData, LiveSearchData} from "./models/LiveData";
 
 export default class Filmweb {
 
@@ -22,6 +24,10 @@ export default class Filmweb {
 
     static get countries(): string[] {
         return countries;
+    }
+
+    static get tvshowGenres(): string[] {
+        return tvshowGenres;
     }
 
     public static getImageServers = (index: number = 0) => Config.IMAGE_SERVER(index);
@@ -51,7 +57,7 @@ export default class Filmweb {
                 Config.API_SERVER +
                 Filmweb.prepareQuery("getFilmInfoFull [" + filmId + "]")
             ).then(result => {
-                const [status, data] = result.data.split('\n');
+                const [status, data] =result.data.split('\n');
                 const json = JSON.parse(data.replace(/t:.*/, ''));
 
                 // json[16],   // seasonCount
@@ -91,8 +97,7 @@ export default class Filmweb {
         });
     }
 
-    public static getPersons(itemId: number, profesion: string, page: number, limit: number) {
-    }
+    public static getFilmLiveData = (query: string): Promise<LivePreviewData> => LiveSearch.itemPreviewByQuery(query);
 
     public static getFilmShortData = (query: string): Promise<LiveSearchData> => LiveSearch.searchFirst(query);
 

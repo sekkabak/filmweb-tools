@@ -1,8 +1,12 @@
 import axios from "axios";
 import Helper from "../Helper";
 import {ItemType} from "../interfaces/Item";
-import {LivePreviewData, LiveSearchData} from "../interfaces/LiveData";
 import LiveSearch from "../LiveSearch";
+import {LivePreviewData, LiveSearchData} from "../models/LiveData";
+
+import genres from "../static/genres.json";
+import gameGenres from "../static/gameGenres.json";
+import TVshowGenres from "../static/tvshowgenres.json";
 
 test('getAllPosters("/09/80/980/7518072.6.jpg")', () => {
     expect(Helper.getAllPosters("/09/80/980/7518072.6.jpg")).toEqual(
@@ -29,8 +33,9 @@ test('mapLiveSearchResponse', () => {
                 "type": "f",
                 "id": 980,
                 "poster": "/09/80/980/7518072.6.jpg",
-                "polishTitle": "Alien",
                 "title": "Obcy - 8. pasażer \"Nostromo\"",
+                "polishTitle": "Alien",
+                "otherTitle": "Пришълецът",
                 "year": 1979,
                 "stars": [
                     "Sigourney Weaver",
@@ -41,8 +46,9 @@ test('mapLiveSearchResponse', () => {
                 "type": "f",
                 "id": 994,
                 "poster": "/09/94/994/7518073.6.jpg",
-                "polishTitle": "Aliens",
                 "title": "Obcy - decydujące starcie",
+                "polishTitle": "Aliens",
+                "otherTitle": "Пришълците",
                 "year": 1986,
                 "stars": [
                     "Sigourney Weaver",
@@ -53,8 +59,9 @@ test('mapLiveSearchResponse', () => {
                 "type": "f",
                 "id": 8243,
                 "poster": "/82/43/8243/7517909.6.jpg",
-                "polishTitle": "Alien³",
                 "title": "Obcy 3",
+                "polishTitle": "Alien³",
+                "otherTitle": "Пришълецът 3",
                 "year": 1992,
                 "stars": [
                     "Sigourney Weaver",
@@ -65,8 +72,9 @@ test('mapLiveSearchResponse', () => {
                 "type": "f",
                 "id": 665400,
                 "poster": "/54/00/665400/7784620.6.jpg",
-                "polishTitle": "Alien: Covenant",
                 "title": "Obcy: Przymierze",
+                "polishTitle": "Alien: Covenant",
+                "otherTitle": "فضائي: العهد",
                 "year": 2017,
                 "stars": [
                     "Michael Fassbender",
@@ -77,8 +85,9 @@ test('mapLiveSearchResponse', () => {
                 "type": "f",
                 "id": 134,
                 "poster": "/01/34/134/7517908.6.jpg",
-                "polishTitle": "Alien: Resurrection",
                 "title": "Obcy: Przebudzenie",
+                "polishTitle": "Alien: Resurrection",
+                "otherTitle": "Пришълецът: Завръщането",
                 "year": 1997,
                 "stars": [
                     "Sigourney Weaver",
@@ -89,8 +98,9 @@ test('mapLiveSearchResponse', () => {
                 "type": "f",
                 "id": 107555,
                 "poster": "/75/55/107555/7528756.6.jpg",
-                "polishTitle": "AVP: Alien vs. Predator",
                 "title": "Obcy kontra Predator",
+                "polishTitle": "AVP: Alien vs. Predator",
+                "otherTitle": "Пришълецът срещу хищникът",
                 "year": 2004,
                 "stars": [
                     "Sanaa Lathan",
@@ -101,8 +111,9 @@ test('mapLiveSearchResponse', () => {
                 "type": "f",
                 "id": 193505,
                 "poster": "/35/05/193505/7388585.6.jpg",
-                "polishTitle": "Cowboys & Aliens",
                 "title": "Kowboje i obcy",
+                "polishTitle": "Cowboys & Aliens",
+                "otherTitle": "Kovbojové a vetřelci",
                 "year": 2011,
                 "stars": [
                     "Daniel Craig",
@@ -113,8 +124,9 @@ test('mapLiveSearchResponse', () => {
                 "type": "f",
                 "id": 300636,
                 "poster": "/06/36/300636/7176411.6.jpg",
-                "polishTitle": "AVPR: Aliens vs Predator - Requiem",
                 "title": "Obcy kontra Predator 2",
+                "polishTitle": "AVPR: Aliens vs Predator - Requiem",
+                "otherTitle": "Пришълците срещу хищникът 2",
                 "year": 2007,
                 "stars": [
                     "Steven Pasquale",
@@ -125,8 +137,9 @@ test('mapLiveSearchResponse', () => {
                 "type": "f",
                 "id": 425990,
                 "poster": "/59/90/425990/7251267.6.jpg",
-                "polishTitle": "Monsters vs. Aliens",
                 "title": "Potwory kontra Obcy",
+                "polishTitle": "Monsters vs. Aliens",
+                "otherTitle": "Чудовища срещу извънземни",
                 "year": 2009,
                 "stars": [
                     "Reese Witherspoon",
@@ -137,8 +150,9 @@ test('mapLiveSearchResponse', () => {
                 "type": "f",
                 "id": 229424,
                 "poster": "/94/24/229424/7175732.6.jpg",
-                "polishTitle": "Perfect Stranger",
                 "title": "Ktoś całkiem obcy",
+                "polishTitle": "Perfect Stranger",
+                "otherTitle": "Идеалната непозната",
                 "year": 2007,
                 "stars": [
                     "Halle Berry",
@@ -192,6 +206,27 @@ test('mapLiveItemPreview', done => {
                 ]
             } as LivePreviewData
         );
+        done();
+    })
+});
+
+test('getGenres', done => {
+    Helper.getGenres().then(data => {
+        expect(data).toEqual(genres);
+        done();
+    })
+});
+
+test('getGameGenres', done => {
+    Helper.getGameGenres().then(data => {
+        expect(data).toEqual(gameGenres);
+        done();
+    })
+});
+
+test('getTVshowGenres', done => {
+    Helper.getTVshowGenres().then(data => {
+        expect(data).toEqual(TVshowGenres);
         done();
     })
 });

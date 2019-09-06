@@ -1,17 +1,3 @@
-export enum Profession {
-    Screenwriter = 1,
-    Director = 2,
-    Cinematographer = 3,
-    Music = 4,
-    Scenography = 5,
-    Actor = 6,
-    Producer = 7,
-    Montage = 10,
-    CostumeDesigner = 12,
-    OriginalMaterials = 17,
-    Sound = 18
-}
-
 export enum ItemType {
     Film = 'f',
     Series = 's',
@@ -27,10 +13,9 @@ export enum ItemTypeUrl {
     's' = 'serial',
     'g' = 'gra',
     'tv' = 'tvshow',
-    // todo: ?? fix that
-    'c' = 'film',
-    'p' = 'film',
-    't' = 'film',
+    'c' = 'showtimes',
+    'p' = 'person',
+    't' = 'program-tv',
 }
 
 export interface Item {

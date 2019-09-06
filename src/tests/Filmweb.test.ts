@@ -1,6 +1,6 @@
 import Filmweb from "../Filmweb";
-import {LiveSearchData} from "../interfaces/LiveData";
 import Film from "../interfaces/Film";
+import {LiveSearchData} from "../models/LiveData";
 
 test('getGenres', () => {
     expect(Filmweb.genres).toBeInstanceOf(Array);
@@ -12,6 +12,7 @@ test('getFilmShortData', done => {
         expect(data).toEqual({
             "type": "f",
             "id": 980,
+            "otherTitle": "Пришълецът",
             "poster": "/09/80/980/7518072.6.jpg",
             "polishTitle": "Alien",
             "title": "Obcy - 8. pasażer \"Nostromo\"",
