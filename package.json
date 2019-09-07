@@ -5,7 +5,7 @@
   "author": "Cezary Bąk",
   "description": "Biblioteka umożliwiająca korzystanie z api filmwebu",
   "main": "lib/Filmweb.js",
-  "types": "lib/Filmweb.d.ts",
+  "types": "./Filmweb.d.ts",
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
